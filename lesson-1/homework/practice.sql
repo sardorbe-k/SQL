@@ -45,9 +45,6 @@ insert into Students values (1, 'Alijan', 19), (2, 'Amirbek', 20), (3, 'Bobur', 
 SSMS ni ochib restore database qildim so'ngra ketma ketlik bilan oxirida ok ni bosib faylni tikladim.
 
 
-                                                         
-                                                         
-
 
 
 
