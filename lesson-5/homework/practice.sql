@@ -264,7 +264,7 @@ INSERT INTO Employees (EmployeeID, FirstName, LastName, DepartmentName, Salary, 
 (40, 'Gary', 'Wright', 'Marketing', 87000.00, '2021-01-10', 29, NULL, 'UK');
                                                   --11
 select * from employees
-where age<25 and salary>60000 
+where age<25 or salary>60000 
                                                   --12
 update employees
 set salary = salary*1.10
@@ -395,7 +395,7 @@ select
 	quantity,
 	case
 		when quantity=1 then 0.03
-		when quantity >1 and quantity <=3 then 0.05
+		when quantity between 1 and 3 then 0.05
 		else 0.07
 		end as discountpercentage
 from Orders
