@@ -1,5 +1,158 @@
---I set up the tables before starting the task.
+--Easy-Level Tasks (10)
+
+--1
+
+select MIN(Price) as min_price from  Products
+
+--2
+
+select MAX(Salary) as max_salary from Employees
+
+--3
+
+select COUNT(*) cnt_row from Customers
+
+--4
+
+select  COUNT(distinct Category) as unique_category_count from Products
+
+--5
+
+select sum(SaleAmount) as total_sales from Sales
+where ProductID=7
+
+--6
+
+select AVG(age) as avg_age from Employees
+
+--7
+
+select DepartmentName , COUNT(*) as cnt_dp from Employees
+group by DepartmentName
+
+--8
+
+select Category, min(price) as min_price, max(price) as max_price from Products
+group by Category
+
+--9
+
+select CustomerID, SUM(saleamount) as total_sales from Sales
+group by CustomerID
+
+--10
+
+select departmentname , count(*) as cnt_department from Employees
+group by DepartmentName
+having count(*) >5
+
+
+--Medium-Level Tasks (9)
+
+--11
+
+select productid , sum(saleamount) as total_sales, avg(saleamount) as avg_sales from Sales
+group by ProductID
+
+--12
+
+select count(*) as hr_employee_count from Employees
+where DepartmentName= 'hr'
+
+--13
+
+select DepartmentName, min(Salary) as min_salary, max (Salary) as max_salary  from Employees
+group by DepartmentName
+
+--14
+
+select DepartmentName, avg(Salary) as avg_salary from Employees
+group by DepartmentName
+
+--15
+
+select departmentname, avg(Salary) as avg_salary , COUNT(*) as cnt from Employees
+group by DepartmentName
+
+--16
+
+select Category, avg(price) as avg_price from Products
+group by Category
+having AVG(price)>40               --Since nothing came out above 400, I used 40 instead.
+
+--17
+
+select SaleDate, sum (saleamount) as total_sales from Sales
+group by SaleDate
+order by saledate             --I used `ORDER BY` to display the results in order.
+
+--18
+
+select CustomerID, min(Quantity) as min_quantity from Orders
+group by CustomerID
+having min(Quantity)>=3
+order by min_quantity asc   --I used `ORDER BY` to display the results in order.
+
+--19
+
+select DepartmentName, avg (Salary) as avg_sale from Employees
+group by DepartmentName 
+having avg(Salary)>60000
+
+--Hard-Level Tasks (6)
+
+--20
+
+select category, avg(Price) as avg_sale from Products
+group by Category
+having  avg(price)>150
+
+--21
+
+select customerid , sum(TotalAmount) as total_price from Orders
+group by CustomerID
+having sum(TotalAmount)>1500
+
+--22
+
+select departmentname , avg (Salary) as avg_salary from Employees
+group by DepartmentName
+having avg (Salary)>65000
+
+--23
+
+select  customerid,
+       sum(case when TotalAmount > 50 then TotalAmount else 0 end) as total_over_50,
+       min(TotalAmount) as least_purchase
+from Orders
+group by customerid
+
+--24
+select * from Orders
+select 
+    year(OrderDate) as sales_year,
+    month(OrderDate) as sales_month,
+    sum(TotalAmount) as total_sales,
+    count(distinct ProductID) as unique_products_sold
+from Orders
+group by year(OrderDate), month(OrderDate)
+having count(distinct ProductID) >= 2
+order by sales_year, sales_month                    --I used `ORDER BY` to display the results in order.
+
+--25
+
+select 
+      year (orderdate) as sales_year,
+	  min(totalamount) as min_amount,
+	  max(TotalAmount) as max_amoint
+from Orders
+group by  year (orderdate)
 DROP TABLE IF EXISTS Employees;
+
+
+
+
+
 
 CREATE TABLE Employees (
     EmployeeID INT PRIMARY KEY,
@@ -293,154 +446,3 @@ INSERT INTO Sales (SaleID, ProductID, CustomerID, SaleDate, SaleAmount) VALUES
 (38, 8, 9, '2023-02-08', 500.00),
 (39, 9, 10, '2023-02-09', 550.00),
 (40, 10, 1, '2023-02-10', 600.00);
-
-
---Easy-Level Tasks (10)
-
---1
-
-select MIN(Price) as min_price from  Products
-
---2
-
-select MAX(Salary) as max_salary from Employees
-
---3
-
-select COUNT(*) cnt_row from Customers
-
---4
-
-select  COUNT(distinct Category) as unique_category_count from Products
-
---5
-
-select sum(SaleAmount) as total_sales from Sales
-where ProductID=7
-
---6
-
-select AVG(age) as avg_age from Employees
-
---7
-
-select DepartmentName , COUNT(*) as cnt_dp from Employees
-group by DepartmentName
-
---8
-
-select Category, min(price) as min_price, max(price) as max_price from Products
-group by Category
-
---9
-
-select CustomerID, SUM(saleamount) as total_sales from Sales
-group by CustomerID
-
---10
-
-select departmentname , count(*) as cnt_department from Employees
-group by DepartmentName
-having count(*) >5
-
-
---Medium-Level Tasks (9)
-
---11
-
-select productid , sum(saleamount) as total_sales, avg(saleamount) as avg_sales from Sales
-group by ProductID
-
---12
-
-select count(*) as hr_employee_count from Employees
-where DepartmentName= 'hr'
-
---13
-
-select DepartmentName, min(Salary) as min_salary, max (Salary) as max_salary  from Employees
-group by DepartmentName
-
---14
-
-select DepartmentName, avg(Salary) as avg_salary from Employees
-group by DepartmentName
-
---15
-
-select departmentname, avg(Salary) as avg_salary , COUNT(*) as cnt from Employees
-group by DepartmentName
-
---16
-
-select Category, avg(price) as avg_price from Products
-group by Category
-having AVG(price)>40               --Since nothing came out above 400, I used 40 instead.
-
---17
-
-select SaleDate, sum (saleamount) as total_sales from Sales
-group by SaleDate
-order by saledate             --I used `ORDER BY` to display the results in order.
-
---18
-
-select CustomerID, min(Quantity) as min_quantity from Orders
-group by CustomerID
-having min(Quantity)>=3
-order by min_quantity asc   --I used `ORDER BY` to display the results in order.
-
---19
-
-select DepartmentName, avg (Salary) as avg_sale from Employees
-group by DepartmentName 
-having avg(Salary)>60000
-
---Hard-Level Tasks (6)
-
---20
-
-select category, avg(Price) as avg_sale from Products
-group by Category
-having  avg(price)>150
-
---21
-
-select customerid , sum(TotalAmount) as total_price from Orders
-group by CustomerID
-having sum(TotalAmount)>1500
-
---22
-
-select departmentname , avg (Salary) as avg_salary from Employees
-group by DepartmentName
-having avg (Salary)>65000
-
---23
-
-select  customerid,
-       sum(case when TotalAmount > 50 then TotalAmount else 0 end) as total_over_50,
-       min(TotalAmount) as least_purchase
-from Orders
-group by customerid
-
---24
-select * from Orders
-select 
-    year(OrderDate) as sales_year,
-    month(OrderDate) as sales_month,
-    sum(TotalAmount) as total_sales,
-    count(distinct ProductID) as unique_products_sold
-from Orders
-group by year(OrderDate), month(OrderDate)
-having count(distinct ProductID) >= 2
-order by sales_year, sales_month                    --I used `ORDER BY` to display the results in order.
-
---25
-
-select 
-      year (orderdate) as sales_year,
-	  min(totalamount) as min_amount,
-	  max(TotalAmount) as max_amoint
-from Orders
-group by  year (orderdate)
