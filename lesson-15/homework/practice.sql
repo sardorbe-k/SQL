@@ -1,6 +1,3 @@
-create database homework15
-use homework15
-
 ---1  Find Employees with Minimum Salary
 CREATE TABLE employees (
     id INT PRIMARY KEY,
