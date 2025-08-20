@@ -1,7 +1,3 @@
-create database homework18
-go 
-use homework18
-
 CREATE TABLE Products (
     ProductID INT PRIMARY KEY,
     ProductName VARCHAR(100),
